@@ -19,9 +19,9 @@ class MsgTimeoutTimerManager(private val imsClient: IMSClientInterface) {
         }
         val clientReceivedReportMsgType = imsClient.getClientReceivedReportMsgType()
         val handshakeMsg = imsClient.getHandshakeMsg()
-        val handshakeMsgType = handshakeMsg.head.msgType
         val heartbeatMsg = imsClient.getHeartbeatMsg()
-        val heartbeatMsgType = heartbeatMsg.head.msgType
+        val handshakeMsgType = handshakeMsg?.head?.msgType ?: -1
+        val heartbeatMsgType = heartbeatMsg?.head?.msgType ?: -1
 
         val msgType = msg.head.msgType
         // 握手消息、心跳消息、客户端返回的状态报告消息，不用重发

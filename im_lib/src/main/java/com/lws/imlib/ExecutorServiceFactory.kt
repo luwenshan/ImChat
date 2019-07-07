@@ -51,4 +51,13 @@ class ExecutorServiceFactory {
         workPool?.shutdownNow()
         workPool = null
     }
+
+    /**
+     * 释放所有线程池
+     */
+    @Synchronized
+    fun destroy() {
+        destroyBossLoopGroup()
+        destroyWorkLoopGroup()
+    }
 }

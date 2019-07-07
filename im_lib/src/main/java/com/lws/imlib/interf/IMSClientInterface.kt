@@ -17,7 +17,7 @@ interface IMSClientInterface {
      * @param listener      与应用层交互的listener
      * @param callback      ims连接状态回调
      */
-    fun init(serverUrlList: List<String>, listener: OnEventListener, callback: IMSConnectStatusCallback)
+    fun init(serverUrlList: MutableList<String?>?, listener: OnEventListener, callback: IMSConnectStatusCallback)
 
     /**
      * 重置连接，也就是重连
@@ -46,7 +46,7 @@ interface IMSClientInterface {
     /**
      * 发送消息
      */
-    fun sendMsg(msg: MessageProtobuf.Msg)
+    fun sendMsg(msg: MessageProtobuf.Msg?)
 
     /**
      * 发送消息
@@ -54,7 +54,7 @@ interface IMSClientInterface {
      * @param msg
      * @param isJoinTimeoutManager 是否加入发送超时管理器
      */
-    fun sendMsg(msg: MessageProtobuf.Msg, isJoinTimeoutManager: Boolean)
+    fun sendMsg(msg: MessageProtobuf.Msg?, isJoinTimeoutManager: Boolean)
 
     /**
      * 获取重连间隔时长
@@ -84,12 +84,12 @@ interface IMSClientInterface {
     /**
      * 获取由应用层构造的握手消息
      */
-    fun getHandshakeMsg(): MessageProtobuf.Msg
+    fun getHandshakeMsg(): MessageProtobuf.Msg?
 
     /**
      * 获取由应用层构造的心跳消息
      */
-    fun getHeartbeatMsg(): MessageProtobuf.Msg
+    fun getHeartbeatMsg(): MessageProtobuf.Msg?
 
     /**
      * 获取应用层消息发送状态报告消息类型
