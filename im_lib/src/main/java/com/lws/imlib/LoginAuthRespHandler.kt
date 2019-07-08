@@ -17,7 +17,7 @@ class LoginAuthRespHandler(private val imsClient: NettyTcpClient) : ChannelInbou
         }
 
         val handshakeMsg = imsClient.getHandshakeMsg()
-        if (handshakeMsg.head == null) {
+        if (handshakeMsg == null || handshakeMsg.head == null) {
             return
         }
 

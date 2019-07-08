@@ -16,7 +16,6 @@ class HeartbeatHandler(private val imsClient: NettyTcpClient) : ChannelInboundHa
     override fun userEventTriggered(ctx: ChannelHandlerContext, evt: Any?) {
         super.userEventTriggered(ctx, evt)
         if (evt is IdleStateEvent) {
-            val state = evt.state()
             when (evt.state()) {
                 IdleState.READER_IDLE -> {
                     // 规定时间内没收到服务端心跳包响应，进行重连操作
@@ -27,7 +26,7 @@ class HeartbeatHandler(private val imsClient: NettyTcpClient) : ChannelInboundHa
                     if (heartbeatTask == null) {
                         heartbeatTask = HeartbeatTask(ctx)
                     }
-                    imsClient.getLoopGroup().execWorkTask(heartbeatTask!!)
+                    imsClient.getLoopGroup()?.execWorkTask(heartbeatTask!!)
                 }
             }
         }

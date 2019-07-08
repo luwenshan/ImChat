@@ -15,7 +15,7 @@ class HeartbeatRespHandler(private val imsClient: NettyTcpClient) : ChannelInbou
             return
         }
         val heartbeatMsg = imsClient.getHeartbeatMsg()
-        if (heartbeatMsg.head == null) {
+        if (heartbeatMsg == null || heartbeatMsg.head == null) {
             return
         }
 
