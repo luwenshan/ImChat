@@ -1,7 +1,8 @@
-package com.lws.imlib.netty
+package com.lws.imlib.handler
 
 import com.alibaba.fastjson.JSONObject
 import com.lws.imlib.IMSConfig
+import com.lws.imlib.client.NettyTcpClient
 import com.lws.imlib.protobuf.MessageProtobuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter

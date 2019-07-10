@@ -1,6 +1,12 @@
-package com.lws.imlib.netty
+package com.lws.imlib.client
 
-import com.lws.imlib.*
+import com.lws.imlib.ExecutorServiceFactory
+import com.lws.imlib.IMSConfig
+import com.lws.imlib.MsgDispatcher
+import com.lws.imlib.MsgTimeoutTimerManager
+import com.lws.imlib.handler.HeartbeatHandler
+import com.lws.imlib.handler.TCPChannelInitializerHandler
+import com.lws.imlib.handler.TCPReadHandler
 import com.lws.imlib.interf.IMSClientInterface
 import com.lws.imlib.listener.IMSConnectStatusCallback
 import com.lws.imlib.listener.OnEventListener
@@ -347,10 +353,7 @@ class NettyTcpClient private constructor() : IMSClientInterface {
                     it.pipeline().remove(HeartbeatHandler::class.java.simpleName)
                 }
                 if (it.pipeline().get(TCPReadHandler::class.java.simpleName) != null) {
-                    it.pipeline().addBefore(
-                        TCPReadHandler::class.java.simpleName, HeartbeatHandler::class.java.simpleName,
-                        HeartbeatHandler(this)
-                    )
+                    it.pipeline().addBefore(TCPReadHandler::class.java.simpleName, HeartbeatHandler::class.java.simpleName, HeartbeatHandler(this))
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

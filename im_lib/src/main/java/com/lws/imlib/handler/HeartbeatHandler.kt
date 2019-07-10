@@ -1,6 +1,6 @@
-package com.lws.imlib
+package com.lws.imlib.handler
 
-import com.lws.imlib.netty.NettyTcpClient
+import com.lws.imlib.client.NettyTcpClient
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
 import io.netty.handler.timeout.IdleState

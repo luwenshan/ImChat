@@ -1,7 +1,7 @@
-package com.lws.imlib
+package com.lws.imlib.handler
 
 import com.alibaba.fastjson.JSON
-import com.lws.imlib.netty.NettyTcpClient
+import com.lws.imlib.client.NettyTcpClient
 import com.lws.imlib.protobuf.MessageProtobuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
@@ -10,7 +10,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter
  * 握手认证消息响应处理handler
  */
 class LoginAuthRespHandler(private val imsClient: NettyTcpClient) : ChannelInboundHandlerAdapter() {
-    override fun channelRead(ctx: ChannelHandlerContext, msg: Any?) {
+    override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
         val handshakeRespMsg = msg as? MessageProtobuf.Msg
         if (handshakeRespMsg == null || handshakeRespMsg.head == null) {
             return

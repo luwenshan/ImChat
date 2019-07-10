@@ -1,7 +1,6 @@
-package com.lws.imlib.netty
+package com.lws.imlib.handler
 
-import com.lws.imlib.HeartbeatRespHandler
-import com.lws.imlib.LoginAuthRespHandler
+import com.lws.imlib.client.NettyTcpClient
 import com.lws.imlib.protobuf.MessageProtobuf
 import io.netty.channel.Channel
 import io.netty.channel.ChannelInitializer
